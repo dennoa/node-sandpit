@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <h1>Test</h1>
+    <p>This makes a number of concurrent requests to /hi/{i}, each to be handled by one of the workers.</p>
+    <p>Each time a request is made for this page, the worker process that served the page is scheduled for termination so that subsequent requests will be serviced
+       by different workers. Once all of the workers have been terminated, the master process will stop.</p>
+    <div id="responses"></div>
+    <script type="text/javascript">
+      for (let i=0; i<20; i++) {
+        fetch(`hi/${i}`).then(response => {
+          response.text().then(text => {
+            var node = document.createElement('DIV');
+            node.appendChild(document.createTextNode(text));
+            document.getElementById("responses").appendChild(node);
+          });
+        });
+      }
+    </script>
+  </body>
+
+</html>
