@@ -2,7 +2,7 @@
 
 const cluster = require('cluster');
 const os = require('os');
-const app = require('./app');
+const doSomeWork = require('./do-some-work');
 
 function hireWorkers() {
   const numCpus = os.cpus().length;
@@ -10,14 +10,6 @@ function hireWorkers() {
   for (let i=0; i<numCpus; i++) {
     cluster.fork();
   }
-  cluster.on('exit', worker => {
-    console.log(`Worker ${worker.process.pid} stopped`);
-  });
-}
-
-function doSomeWork() {
-  console.log(`Worker ${process.pid} started`);
-  app.listen(9000);
 }
 
 function start() {
