@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "express": "^4.16.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "throng": "^4.0.0"
   }
 }
